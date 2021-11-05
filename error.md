@@ -6,3 +6,6 @@
 
 3. Error when nodemon restart
    When the server file is not the last file to be saved nodemon will crash.
+
+4. Promise not handled
+   When try & catch is not used for async/await 

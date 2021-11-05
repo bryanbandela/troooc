@@ -5,11 +5,18 @@ const Transaction = require('../Models/transactionModels');
 //@route        GET /api/transactions/
 //@access       Private
 const getTransactions = async (req, res) => {
-    
-    const transactions = await Transaction.find({user: req.user});
+    try {
+        const transactions = await Transaction.find({user: req.user});
     if (transactions) {
-    res.json({transactions: transactions});
+    res.status(200).json({transactions: transactions});
+    } else {
+        res.json({message: "No transaction found"})
     }
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({message: "Error occured while looking for transaction"})
+    }
+    
 }
 
 //@description  Get single transaction

@@ -5,11 +5,18 @@ const Budget = require('../Models/budgetModels');
 //@route        GET /api/budgets/
 //@access       Private
 const getBudgets = async (req, res) => {
-    
-    const budgets = await Transaction.find({user: req.user});
+    try {
+       const budgets = await Budget.find({user: req.user});
     if (budgets) {
-    res.json({budgets: budgets});
+    res.status(200).json({budgets: budgets});
+    } else {
+        res.json({message: "No budget found"});
     }
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({message: "Error occured while looking for budgets"})
+    }
+    
 }
 
 //@description  Get single budget
