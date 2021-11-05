@@ -50,29 +50,24 @@ const createTransaction = async (req, res) => {
 
 
 //@description  Update single transaction
-//@route        PUT /api/transactions/:id
+//@route        PATCH /api/transactions/:id
 //@access       Private
 const updateTransaction = async (req, res) => {
-    
+    const {id} = req.params;
     try {
-        const transaction = await Transaction.findOne(req.params.id);
+        let transaction = await Transaction.updateOne(
+            {_id: id},
+             {$set: req.body});
         if (transaction) {
-            transaction.type = req.body.type || transaction.type,
-            transaction.category = req.body.category || transaction.category,
-            transaction.name = req.body.name || transaction.name,
-            transaction.amount = req.body.amount || transaction.amount
+            transaction = await Transaction.findById(id);
+            res.json({
+            transaction: transaction
+        });
         }
-        const updatedTransaction = await transaction.save();
-        res.json({
-            id: updatedTransaction._id,
-            type: updatedTransaction._type,
-            category: updatedTransaction._category,
-            name: updatedTransaction._name,
-            amount: updatedTransaction._amount,
-        })
+        
     } catch (error) {
         console.log(error);
-        res.status(404);
+        res.status(404).json({message: "Failed to update"});
         throw new Error("Transaction failed to update")
     }
 }

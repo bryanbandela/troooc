@@ -50,26 +50,20 @@ const createBudget = async (req, res) => {
 
 
 //@description  Update single budget
-//@route        PUT /api/budgets/:id
+//@route        PATCH /api/budgets/:id
 //@access       Private
 const updateBudget = async (req, res) => {
-    
+    const {id} = req.params;
     try {
-        const budget = await Budget.findOne(req.params.id);
+        let budget = await Budget.updateOne(
+            {_id: id},
+             {$set: req.body});
         if (budget) {
-            budget.type = req.body.type || budget.type,
-            budget.category = req.body.category || budget.category,
-            budget.name = req.body.name || budget.name,
-            budget.amount = req.body.amount || budget.amount
+            budget = await Budget.findById(id);
+            res.json({
+            budget: budget
+        });
         }
-        const updatedBudget = await budget.save();
-        res.json({
-            id: updatedBudget._id,
-            type: updatedBudget._type,
-            category: updatedBudget._category,
-            name: updatedBudget._name,
-            amount: updatedBudget._amount,
-        })
     } catch (error) {
         console.log(error);
         res.status(404);
