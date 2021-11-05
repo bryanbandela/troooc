@@ -2,10 +2,18 @@
   "name": "troooc",
   "version": "1.0.0",
   "description": "Expense tracker app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon backend/server.js"
   },
   "author": "Bryan Bandela",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12",
+    "validator": "^13.7.0"
+  }
 }

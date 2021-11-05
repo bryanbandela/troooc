@@ -41,3 +41,31 @@ Date: default current date
 2.3. Goals
 Expenses: Number (For each categories)
 Gains: Number
+
+III. Folder setup: Backend & Frontend
+
+- npm init
+- git init
+- npx create-react-app frontend
+- Delete gitignore in frontend: rm -rf .git & delete manually
+- Push to github
+- npm i express mongoose dotenv
+- npm i --save-dev concurrently nodemon
+- mkdir backend
+
+IV. Workflow logic
+
+IV.1. BACKEND
+
+- Config folder for DB
+- Server
+- Models for user & transactions : You may add pre & post & static method on schema + npm i validator => for email
+- Either store the jwt in the cookie (npm i cookie-parser) or json send the jwt to frontend & use auth for request
+- utils folder to generate token: npm i jsonwebtoken
+- Middleware folder: for authentication & error handling
+- bcrypt to hash password in controllers
+- Routes (express.Router())
+- Controllers (CRUD)
+
+IV.2. FRONTEND
+
