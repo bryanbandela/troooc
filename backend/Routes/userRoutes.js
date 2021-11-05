@@ -7,5 +7,4 @@ router.route('/register').post(registerUser);
 router.route('/login').post(loginUser);
 router.route('/profile').put(protect,updateUser).delete(protect,deleteUser);
 
-
 module.exports = router;
