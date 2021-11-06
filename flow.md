@@ -69,3 +69,12 @@ IV.1. BACKEND
 
 IV.2. FRONTEND
 
+Have a design so you can follow
+
+- In backend: npm i concurrently --save-dev & in package.json add the scripts to run backend & frontend concurrently
+- In frontend: Add proxy "proxy": "http://127.0.0.1:5000" in package.json
+- npm i axios
+- npm i react-router-dom : for routes between pages
+- npm i react-helmet : for dynamic meta (eg: title, meta) +> to be used in screen
+- npm i react-icons :
+- Add folders: components & screens
