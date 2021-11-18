@@ -14,3 +14,11 @@
 
 - In index.js : Import {BrowserRoute} from react-router-dom & wrap <App />
 - In App.js : Use Routes & Route
+
+6. Object not iterable: In reducer
+   Cause: the transactions array was undefined after first dispatch
+   Solution: Make sure I return the previous state to have transactions as an array
+   Tips: Use console.log to debug logical error
+
+7. Objects are not valid as a React child : see the cause
+   My cause was the date format
