@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
   try {
     const doesUserExist = await User.findOne({ email });
     if (doesUserExist) {
-      res.status(400);
+      res.status(400).json({ message: 'User already exists' });
       throw new Error('User already exists');
     }
     const createUser = await User.create({
@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
         id: createUser._id,
         email: createUser.email,
         username: createUser.username,
-        token: generateToken(createUser._id),
+        accessToken: generateToken(createUser._id),
       });
     }
   } catch (error) {
@@ -60,7 +60,7 @@ const loginUser = async (req, res) => {
       res.status(401).json({ message: 'Wrong password!' });
     }
   } catch (error) {
-    console.log(error);
+    console.log('Hey Bryan, an error occured', error);
     const err = errorValidator(error);
     res.status(400).json({ err });
   }

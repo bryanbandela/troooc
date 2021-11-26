@@ -22,3 +22,9 @@
 
 7. Objects are not valid as a React child : see the cause
    My cause was the date format
+
+8. e.preventDefault() behavior: it works when you insert the method in the form tag, not in the button
+
+9. I fixed the cors message with npm i cors
+
+10. React-helmet seems deprecated. SO use React-helmet-async (At the end of project)

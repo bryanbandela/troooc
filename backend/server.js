@@ -6,12 +6,14 @@ const transactionRoutes = require('./Routes/transactionRoutes');
 const budgetRoutes = require('./Routes/budgetRoutes');
 const tipRoutes = require('./Routes/tipRoutes');
 const { notFound, errorHandle } = require('./middleware/errorMiddleware');
+const cors = require('cors');
 
 require('dotenv').config();
 
 connect();
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/api/users', userRoutes);
 app.use('/api/transactions', transactionRoutes);
