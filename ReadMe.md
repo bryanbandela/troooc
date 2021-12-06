@@ -19,4 +19,4 @@ These advices will come:
 
 [RESULTS]
 
-www.troooc.com
+troooc
