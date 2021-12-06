@@ -1,0 +1,93 @@
+.transactionForm {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.click_to_add {
+  width: 300px;
+  height: 30px;
+  background-color: rgb(8, 218, 155);
+  color: #000;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.transactionForm form {
+  padding: 1rem 2rem;
+  border: 1px solid rgb(214, 213, 213);
+  transition: 0.3s;
+}
+
+.transactionForm form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8rem;
+}
+
+.transactionForm form div label {
+  color: rgb(95, 93, 93);
+  margin-bottom: 0.4rem;
+}
+
+.transactionForm form div select {
+  padding: 0.3rem 0;
+}
+
+.transactionForm form div input {
+  padding: 0.2rem 0;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 1rem;
+}
+
+.transactionForm form div input::placeholder {
+  color: rgb(206, 201, 201);
+}
+
+.transactionForm form div input:active,
+.transactionForm form div input:focus,
+.transactionForm form div select:focus,
+.transactionForm form div select:active {
+  outline: none;
+}
+
+.transactionForm form button,
+.cancel {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  width: 100%;
+  background-color: rgb(9, 221, 105);
+  color: #000;
+  border: 0;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.cancel {
+  text-align: center;
+  background-color: #000;
+  color: white;
+}
+
+@media (min-width: 820px) {
+  .transactionForm form button,
+  .cancel {
+    margin-top: 1rem;
+  }
+
+  .transactionForm form button:hover {
+    background-color: rgb(9, 167, 80);
+  }
+
+  .transactionForm form button.cancel:hover {
+    background-color: rgb(46, 45, 45);
+  }
+}

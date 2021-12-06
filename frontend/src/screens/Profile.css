@@ -1,0 +1,106 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.profile a {
+  text-decoration: none;
+  color: #000;
+}
+
+.profile a.return {
+  text-decoration: none;
+  color: #000;
+  margin-bottom: 1rem;
+  background-color: rgb(197, 190, 190);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.profile a div {
+  padding: 0.5rem 1.2rem;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px;
+  margin-bottom: 1.5rem;
+  background-color: white;
+}
+
+.profile a div.logout {
+  background-color: #000;
+}
+
+.profile a div p {
+  font-size: 1.2rem;
+  color: rgb(9, 221, 105);
+}
+
+.profile a div.delete p {
+  color: crimson;
+}
+
+.profile a div.logout p {
+  color: white;
+}
+
+.profile form {
+  width: 90%;
+  max-width: 300px;
+}
+
+.profile form div {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile form div label {
+  color: grey;
+  margin-bottom: 0.3rem;
+}
+
+.profile form div input {
+  padding: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid #000;
+  font-size: 1rem;
+}
+
+.profile form button,
+.profile form button.delete_btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  background-color: rgb(9, 221, 105);
+  border: 1px solid grey;
+  color: #000;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.profile form button.delete_btn {
+  background-color: white;
+  color: crimson;
+}
+
+.profile form button:hover {
+  background-color: rgb(6, 182, 85);
+}
+
+.profile form button.delete_btn:hover {
+  background-color: crimson;
+  color: white;
+}
+
+.profile form div input:active,
+.profile form div input:focus {
+  outline: none;
+}

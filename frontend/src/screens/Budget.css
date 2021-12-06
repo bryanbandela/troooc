@@ -1,0 +1,82 @@
+.budget {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 90%;
+  min-height: 100vh;
+}
+
+.allbudgets {
+  order: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+}
+
+.allbudgets h2,
+.submit_budget h2 {
+  margin-bottom: 2rem;
+}
+
+.submit_budget {
+  order: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+}
+
+.submit_budget form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit_budget form div label {
+  color: grey;
+  margin-bottom: 1rem;
+}
+
+.submit_budget form div input {
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid #000;
+}
+
+.submit_budget form button {
+  background-color: cyan;
+  color: #000;
+  padding: 0.5rem 1rem;
+  width: 250px;
+  border: 0;
+  border-radius: 5px;
+}
+
+.submit_budget form div input:focus,
+.submit_budget form div input:active {
+  outline: none;
+}
+
+@media (min-width: 820px) {
+  .budget {
+    flex-direction: row;
+  }
+
+  .allbudgets {
+    order: 1;
+    width: 50%;
+  }
+
+  .submit_budget {
+    order: 2;
+    width: 50%;
+  }
+
+  .submit_budget form button:hover {
+    cursor: pointer;
+    background-color: darkcyan;
+  }
+}

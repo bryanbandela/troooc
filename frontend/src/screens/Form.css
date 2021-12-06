@@ -1,0 +1,119 @@
+.title_h1 {
+  color: #000;
+  text-align: center;
+  margin: 2rem auto 1rem;
+}
+
+.title_tag span {
+  color: #000;
+}
+
+.title_tag {
+  color: grey;
+  text-align: center;
+  margin: 0 auto 2rem;
+}
+
+.container {
+  width: 80%;
+  max-width: 400px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+}
+
+.form {
+  width: 100%;
+}
+
+.container a {
+  text-decoration: none;
+  color: rgb(22, 92, 196);
+}
+
+.container h2 {
+  margin: 1rem auto 0;
+}
+
+.container p {
+  font-size: 1rem;
+}
+
+.container form {
+  margin: 2rem auto 0;
+}
+
+.form-control {
+  position: relative;
+  margin: 1.5rem auto;
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid grey;
+  display: block;
+  width: 100%;
+  margin: 1rem auto;
+  padding: 8px 0px;
+  font-size: 1rem;
+}
+
+.form-control input:focus,
+.form-control input:active {
+  outline: none;
+}
+
+.form-control label {
+  position: absolute;
+  top: 30%;
+  color: #adadad;
+  font-size: 1rem;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.form-control span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: grey;
+  transition: 0.5s;
+}
+
+.form-control input:focus ~ span,
+.form-control input:active ~ span {
+  background-color: rgb(69, 189, 189);
+  width: 100%;
+  height: 2px;
+}
+
+.form-control input:focus ~ label,
+.form-control input:active ~ label,
+.form-control input:valid ~ label {
+  top: -35%;
+}
+
+.form .btn {
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    rgb(16, 185, 143) 0%,
+    rgb(5, 221, 138) 100%
+  );
+  color: rgb(0, 0, 0);
+  width: 100%;
+  border-radius: 5px;
+
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  margin: 1rem auto;
+}
+
+.text {
+  margin: 1rem auto;
+}

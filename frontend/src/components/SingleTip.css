@@ -1,0 +1,22 @@
+.single_tip {
+  width: 300px;
+  min-height: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem auto;
+  border: 1px solid rgb(223, 219, 219);
+  background-color: white;
+}
+
+.single_tip h3 {
+  margin-bottom: 0.5rem;
+}
+
+.single_tip p {
+  margin-bottom: 0.5rem;
+}
+
+.single_tip h6 {
+  color: rgb(190, 187, 187);
+}

@@ -1,0 +1,49 @@
+.single_transaction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.single_transaction form {
+  width: 90%;
+  max-width: 400px;
+}
+
+.single_transaction form div {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.single_transaction form div label {
+  color: grey;
+  margin-bottom: 0.3rem;
+}
+
+.single_transaction form div input {
+  padding: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid #000;
+  font-size: 1rem;
+}
+
+.single_transaction form button {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  width: 100%;
+  background-color: rgb(9, 221, 105);
+  color: #000;
+  border: 0;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.single_transaction form div input:active,
+.single_transaction form div input:focus {
+  outline: none;
+}

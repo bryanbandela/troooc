@@ -1,0 +1,15 @@
+.single_budget {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.single_budget p {
+  text-align: center;
+}
+
+.single_budget p span {
+  color: #000;
+  font-weight: bold;
+}

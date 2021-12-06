@@ -1,0 +1,33 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  margin: 3rem auto 1rem;
+}
+
+footer p {
+  font-family: 'Fira Code', sans-serif;
+  font-size: 0.9rem;
+  color: #616e92;
+  margin: 0.5rem auto;
+}
+
+.socials {
+  display: flex;
+}
+
+.socials i {
+  color: #616e92;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+@media (min-width: 820px) {
+  .socials i:hover {
+    color: rgb(16, 185, 143);
+  }
+}
