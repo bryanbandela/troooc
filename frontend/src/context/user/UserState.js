@@ -3,6 +3,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -79,11 +80,16 @@ const UserState = (props) => {
     }
   }
 
+  function logoutUser() {
+    dispatch({ type: USER_LOGOUT });
+  }
+
   return (
     <UserContext.Provider
       value={{
         registerUser,
         loginUser,
+        logoutUser,
         loading: state.loading,
         userInfo: state.userInfo,
         accessToken: state.accessToken,

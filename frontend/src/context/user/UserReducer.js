@@ -5,6 +5,7 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
+  USER_LOGOUT,
 } from './userConstants';
 
 const UserReducer = (
@@ -32,6 +33,8 @@ const UserReducer = (
       };
     case USER_LOGIN_FAIL:
       return { message: 'Failed to login' };
+    case USER_LOGOUT:
+      return { accessToken: null, userInfo: {} };
 
     default:
       return state;

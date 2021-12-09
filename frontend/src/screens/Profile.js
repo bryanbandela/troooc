@@ -1,9 +1,23 @@
 import Meta from '../components/Meta';
+import { useContext, useEffect } from 'react';
 import Header from '../components/Header';
 import './Profile.css';
 import { Link } from 'react-router-dom';
+import UserContext from '../context/user/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
+  const navigate = useNavigate();
+  const { accessToken, logoutUser } = useContext(UserContext);
+  const logoutClick = () => {
+    logoutUser();
+    console.log('Logged out and directed to login page');
+    navigate('/login');
+  };
+
+  const deleteUser = () => {
+    console.log('About to delete user with token', accessToken);
+  };
   return (
     <>
       <Meta />
@@ -14,16 +28,14 @@ function Profile() {
             <p>Update Profile</p>
           </div>
         </Link>
-        <Link to="/profile/delete">
-          <div className="delete">
-            <p>Delete Profile</p>
-          </div>
-        </Link>
-        <Link to="/logout">
-          <div className="logout">
-            <p>Logout</p>
-          </div>
-        </Link>
+
+        <button className="delete" onClick={() => deleteUser()}>
+          <p>Delete Profile</p>
+        </button>
+
+        <button className="logout" onClick={() => logoutClick()}>
+          <p>Logout</p>
+        </button>
       </div>
     </>
   );

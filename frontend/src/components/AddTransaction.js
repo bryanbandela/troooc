@@ -1,9 +1,14 @@
 import './AddTransaction.css';
 import { useContext, useState } from 'react';
 import TransactionContext from '../context/transaction/TransactionContext';
+import UserContext from '../context/user/UserContext';
 
 function AddTransaction() {
   const { addTransaction } = useContext(TransactionContext);
+  const {
+    accessToken,
+    userInfo: { id },
+  } = useContext(UserContext);
   const [type, setType] = useState('Outcome');
   const [category, setCategory] = useState('Beauty');
   const [name, setName] = useState('');
@@ -31,15 +36,14 @@ function AddTransaction() {
   const submitHandler = (e) => {
     e.preventDefault();
     const newTransaction = {
-      id: Math.floor(Math.random() * 100000000),
+      user: id,
       type,
       category,
       name,
       amount: Number(amount),
-      date: new Date(),
     };
 
-    addTransaction(newTransaction);
+    addTransaction(newTransaction, accessToken);
 
     setName('');
     setAmount('');

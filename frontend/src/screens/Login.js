@@ -15,9 +15,8 @@ function Login() {
     console.log('This is the token in Login useEffect', accessToken);
     if (accessToken && accessToken !== null) {
       navigate(redirect);
-      console.log('Directed to home');
     }
-  }, [accessToken, navigate, redirect]);
+  });
 
   console.log('accessToken detail in Login page', accessToken);
 

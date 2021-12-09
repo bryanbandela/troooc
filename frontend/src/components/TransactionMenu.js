@@ -3,10 +3,17 @@ import Transaction from './Transaction';
 import AddTransaction from './AddTransaction';
 import { useContext, useEffect } from 'react';
 import TransactionContext from '../context/transaction/TransactionContext';
+import UserContext from '../context/user/UserContext';
 
 function TransactionMenu() {
-  const { transactions } = useContext(TransactionContext);
+  const { transactions, getAllTransactions } = useContext(TransactionContext);
+  const { accessToken } = useContext(UserContext);
   console.log('In TransactionMenu', transactions);
+
+  useEffect(() => {
+    console.log('Transactions fetched in TransactionMenu');
+    getAllTransactions(accessToken);
+  }, []);
 
   return (
     <>

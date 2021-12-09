@@ -5,24 +5,39 @@ import Header from '../components/Header';
 import Balance from '../components/Balance';
 import TransactionMenu from '../components/TransactionMenu';
 import UserContext from '../context/user/UserContext';
-import TransactionContext from '../context/transaction/TransactionContext';
+import jwtDecode from 'jwt-decode';
 
 function Home() {
   const navigate = useNavigate();
-  const { accessToken } = useContext(UserContext);
-  const { getAllTransactions } = useContext(TransactionContext);
+  const { accessToken, logoutUser } = useContext(UserContext);
   const redirect = '/login';
 
-  useEffect(() => {
-    getAllTransactions(accessToken);
-  }, []);
+  const checkToken = () => {
+    let token = localStorage.getItem('accessToken');
+    const { exp } = jwtDecode(token);
+    console.log('exp is in Home page', exp);
+    const expirationTime = exp * 1000 - 60000;
+    console.log('Checking calc for expiration', expirationTime);
+    console.log('what is Date.now', Date.now());
+
+    if (Date.now() >= expirationTime) {
+      localStorage.clear();
+      console.log('Token has expired');
+      logoutUser();
+      navigate('/login');
+    }
+  };
 
   useEffect(() => {
-    console.log('Token in home page', accessToken);
     if (!accessToken) {
       navigate(redirect);
     }
-  }, [accessToken, navigate, redirect]);
+
+    checkToken();
+
+    //Come back to see how to check an expiry token
+    //No need for depency in useEffect
+  });
 
   return (
     <>

@@ -6,3 +6,7 @@
 3. To add an image as background in a div: add an inline style in the react js file style={{backgroundImage: 'url("image.jpg")'}}
 
 4. background-size: cover -> resize the image to fint in container
+
+5. useEffect dependencies are only the things that change
+
+6. jwt-decode (in frontend) to check if the jwt has expired

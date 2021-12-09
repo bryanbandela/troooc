@@ -8,7 +8,12 @@ import {
 } from './transactionConstants';
 
 const TransactionsReducer = (
-  state = { transactions: [], loading: false, singleTransaction: {} },
+  state = {
+    transactions: [],
+    loading: false,
+    singleTransaction: {},
+    message: '',
+  },
   action
 ) => {
   switch (action.type) {
@@ -37,7 +42,7 @@ const TransactionsReducer = (
     case FAILED_TRANSACTION:
       return {
         ...state,
-        message: 'failed',
+        message: 'failed to get all transactions',
       };
     default:
       return state;

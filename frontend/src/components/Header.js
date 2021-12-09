@@ -1,8 +1,14 @@
 import './Header.css';
-import { FaChartPie, FaComment, FaHome, FaList, FaUser } from 'react-icons/fa';
+import { FaComment, FaHome, FaList, FaUser } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import UserContext from '../context/user/UserContext';
 
 const Header = () => {
+  const {
+    userInfo: { username },
+  } = useContext(UserContext);
+
   return (
     <header className="header_app">
       <h2 className="logo_name">troooc</h2>
@@ -43,10 +49,8 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <div className="chart">
-          <i>
-            <FaChartPie size="25" />
-          </i>
+        <div className="username">
+          <p>{username}</p>
         </div>
       </div>
     </header>

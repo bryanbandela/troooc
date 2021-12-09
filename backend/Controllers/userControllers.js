@@ -110,4 +110,30 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, updateUser, deleteUser };
+//@description  logout profile
+//@route        GET /api/users/profile
+//@access       Private
+const logoutUser = async (req, res) => {
+  const reqUser = await User.findById(req.user);
+  if (reqUser) {
+    if (user) {
+      res.json({
+        id: null,
+        username: null,
+        email: null,
+        token: '',
+      });
+    } else {
+      res.status(404);
+      throw new Error('User not found');
+    }
+  }
+};
+
+module.exports = {
+  registerUser,
+  logoutUser,
+  loginUser,
+  updateUser,
+  deleteUser,
+};

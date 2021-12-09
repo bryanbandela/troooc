@@ -1,4 +1,4 @@
-import { useContext, useReducer } from 'react';
+import { useReducer } from 'react';
 import axios from 'axios';
 import TransactionContext from './TransactionContext';
 import TransactionsReducer from './TransactionReducer';
@@ -15,21 +15,36 @@ const initialState = {
   loading: false,
   transactions: [],
   singleTransaction: {},
+  message: null,
 };
 
 const TransactionState = (props) => {
   const [state, dispatch] = useReducer(TransactionsReducer, initialState);
 
   //ADD TRANSACTION ACTION
-  const addTransaction = (transaction) => {
-    dispatch({
-      type: SET_LOADING,
-    });
+  const addTransaction = async (transaction, token) => {
+    try {
+      dispatch({
+        type: SET_LOADING,
+      });
 
-    dispatch({
-      type: ADD_TRANSACTION,
-      payload: transaction,
-    });
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const data = await axios.post('/api/transactions', transaction, config);
+      console.log('Adding a transaction in DB (State)', data);
+
+      dispatch({
+        type: ADD_TRANSACTION,
+        payload: transaction,
+      });
+    } catch (error) {
+      dispatch({ type: FAILED_TRANSACTION });
+      console.log('Error occured in state while adding transaction', error);
+    }
   };
 
   //Get all transactions
@@ -44,6 +59,7 @@ const TransactionState = (props) => {
       };
 
       const data = await axios.get('/api/transactions/', config);
+      console.log('Checking data in frontend State', data);
       const {
         data: { transactions },
       } = data;

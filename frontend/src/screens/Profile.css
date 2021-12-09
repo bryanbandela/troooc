@@ -21,7 +21,9 @@
   border-radius: 5px;
 }
 
-.profile a div {
+.profile a div,
+.profile .delete,
+.profile .logout {
   padding: 0.5rem 1.2rem;
   width: 300px;
   border-radius: 5px;
@@ -30,20 +32,21 @@
   background-color: white;
 }
 
-.profile a div.logout {
+.profile .logout {
   background-color: #000;
 }
 
 .profile a div p {
   font-size: 1.2rem;
+  text-align: center;
   color: rgb(9, 221, 105);
 }
 
-.profile a div.delete p {
+.profile .delete p {
   color: crimson;
 }
 
-.profile a div.logout p {
+.profile .logout p {
   color: white;
 }
 
