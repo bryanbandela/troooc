@@ -6,6 +6,8 @@ import {
   ADD_TRANSACTION,
   ADD_TRANSACTIONS,
   FAILED_TRANSACTION,
+  REMOVE_LOADING,
+  RESET_TRANSACTION,
   SET_LOADING,
   SHOW_TRANSACTION,
 } from './transactionConstants';
@@ -34,12 +36,21 @@ const TransactionState = (props) => {
         },
       };
 
-      const data = await axios.post('/api/transactions', transaction, config);
-      console.log('Adding a transaction in DB (State)', data);
+      const { data } = await axios.post(
+        '/api/transactions',
+        transaction,
+        config
+      );
+      console.log(
+        'Adding a transaction in DB (State)',
+        data,
+        'The successful transaction in DB',
+        data.transaction
+      );
 
       dispatch({
         type: ADD_TRANSACTION,
-        payload: transaction,
+        payload: data.transaction,
       });
     } catch (error) {
       dispatch({ type: FAILED_TRANSACTION });
@@ -59,7 +70,7 @@ const TransactionState = (props) => {
       };
 
       const data = await axios.get('/api/transactions/', config);
-      console.log('Checking data in frontend State', data);
+
       const {
         data: { transactions },
       } = data;
@@ -73,6 +84,7 @@ const TransactionState = (props) => {
         'And the transactions',
         transactions
       );
+      dispatch({ type: REMOVE_LOADING });
     } catch (error) {
       dispatch({ type: FAILED_TRANSACTION });
       console.log('Transaction fetching Error in state', error);
@@ -90,6 +102,20 @@ const TransactionState = (props) => {
     });
   };
   //DELETE TRANSACTION
+  const deleteTransaction = (id) => {
+    console.log('Transaction deleted');
+    //add async/await
+  };
+
+  //UPDATE TRANSACTION
+  const updateTransaction = (id) => {
+    console.log('Transaction updated');
+    //add async/await
+  };
+
+  const resetTransaction = () => {
+    dispatch({ type: RESET_TRANSACTION });
+  };
 
   return (
     <TransactionContext.Provider
@@ -100,6 +126,9 @@ const TransactionState = (props) => {
         addTransaction,
         getSingleTransaction,
         getAllTransactions,
+        resetTransaction,
+        deleteTransaction,
+        updateTransaction,
       }}
     >
       {props.children}

@@ -1,15 +1,18 @@
 import Meta from '../components/Meta';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import Header from '../components/Header';
 import './Profile.css';
 import { Link } from 'react-router-dom';
 import UserContext from '../context/user/UserContext';
 import { useNavigate } from 'react-router-dom';
+import TransactionContext from '../context/transaction/TransactionContext';
 
 function Profile() {
   const navigate = useNavigate();
   const { accessToken, logoutUser } = useContext(UserContext);
+  const { resetTransaction } = useContext(TransactionContext);
   const logoutClick = () => {
+    resetTransaction();
     logoutUser();
     console.log('Logged out and directed to login page');
     navigate('/login');

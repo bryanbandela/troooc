@@ -4,12 +4,13 @@ import AddTransaction from './AddTransaction';
 import { useContext, useEffect } from 'react';
 import TransactionContext from '../context/transaction/TransactionContext';
 import UserContext from '../context/user/UserContext';
+import Loader from './Loader';
 
 function TransactionMenu() {
   const { transactions, getAllTransactions } = useContext(TransactionContext);
   const { accessToken } = useContext(UserContext);
   console.log('In TransactionMenu', transactions);
-
+  console.log('Checking the length of array', transactions.length);
   useEffect(() => {
     console.log('Transactions fetched in TransactionMenu');
     getAllTransactions(accessToken);

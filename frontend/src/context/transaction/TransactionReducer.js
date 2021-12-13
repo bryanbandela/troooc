@@ -2,6 +2,8 @@ import {
   ADD_TRANSACTION,
   ADD_TRANSACTIONS,
   FAILED_TRANSACTION,
+  RESET_TRANSACTION,
+  REMOVE_LOADING,
   SET_LOADING,
   SHOW_TRANSACTION,
   SHOW_TRANSACTIONS,
@@ -27,22 +29,29 @@ const TransactionsReducer = (
       };
     case ADD_TRANSACTIONS:
       return {
-        singleTransaction: {},
+        ...state,
         transactions: action.payload,
-        loading: false,
       };
     case SHOW_TRANSACTIONS:
       return {
         ...state,
         transactions: [...state.transactions],
-        loading: false,
       };
+    case REMOVE_LOADING:
+      return { ...state, loading: false };
     case SHOW_TRANSACTION:
-      return { ...state, singleTransaction: action.payload, loading: false };
+      return { ...state, singleTransaction: action.payload };
     case FAILED_TRANSACTION:
       return {
         ...state,
         message: 'failed to get all transactions',
+      };
+    case RESET_TRANSACTION:
+      return {
+        transactions: [],
+        loading: false,
+        singleTransaction: {},
+        message: '',
       };
     default:
       return state;

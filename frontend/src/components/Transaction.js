@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
 
 function Transaction({ type, category, name, date, amount, id }) {
+  console.log(`Date for transaction ${id} is the following`, date);
   return (
     <div className="transaction">
       <Link to={`/home/${id}`}>

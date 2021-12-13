@@ -3,11 +3,13 @@ import Meta from '../components/Meta';
 import Header from '../components/Header';
 import { useState, useContext } from 'react';
 import TransactionContext from '../context/transaction/TransactionContext';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function SingleTransaction() {
+  const navigate = useNavigate();
   const { id } = useParams();
-  const { transactions } = useContext(TransactionContext);
+  const { transactions, updateTransaction, deleteTransaction } =
+    useContext(TransactionContext);
   console.log('SingleTransaction page', transactions);
 
   const transaction = transactions.find((transac) => transac._id === id);
@@ -20,12 +22,27 @@ function SingleTransaction() {
   const [modifyCategory, setModifyCategory] = useState(category);
   const [modifyName, setModifyName] = useState(name);
   const [modifyAmount, setModifyAmount] = useState(amount);
+  const [toggle, setToggle] = useState(false);
+
+  const deleteOrUpdate = (e) => {
+    e.preventDefault();
+    if (toggle) {
+      deleteTransaction();
+      navigate('/home');
+    } else {
+      updateTransaction();
+      navigate(`/home/${id}`);
+    }
+  };
 
   return (
     <>
       <Meta />
       <Header />
       <div className="single_transaction">
+        <button onClick={() => setToggle(!toggle)} className="toggle">
+          Toggle to {toggle ? 'Delete' : 'Update'}
+        </button>
         <form>
           <div>
             <label>Type</label>
@@ -63,7 +80,12 @@ function SingleTransaction() {
               required
             ></input>
           </div>
-          <button>Update</button>
+          <button
+            onClick={(e) => deleteOrUpdate(e)}
+            style={{ backgroundColor: toggle ? 'red' : 'green' }}
+          >
+            {toggle ? 'Delete' : 'Update'}
+          </button>
         </form>
       </div>
     </>
