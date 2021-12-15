@@ -1,3 +1,14 @@
+.toggle {
+  padding: 8px 16px;
+  background-color: rgb(228, 225, 225);
+  border-radius: 5px;
+  color: #000;
+}
+
+.toggle:hover {
+  background-color: rgb(117, 112, 112);
+}
+
 .single_transaction {
   display: flex;
   flex-direction: column;

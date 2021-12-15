@@ -4,12 +4,14 @@ import Header from '../components/Header';
 import { useState, useContext } from 'react';
 import TransactionContext from '../context/transaction/TransactionContext';
 import { useParams, useNavigate } from 'react-router-dom';
+import UserContext from '../context/user/UserContext';
 
 function SingleTransaction() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { transactions, updateTransaction, deleteTransaction } =
     useContext(TransactionContext);
+  const { accessToken } = useContext(UserContext);
   console.log('SingleTransaction page', transactions);
 
   const transaction = transactions.find((transac) => transac._id === id);
@@ -27,11 +29,20 @@ function SingleTransaction() {
   const deleteOrUpdate = (e) => {
     e.preventDefault();
     if (toggle) {
-      deleteTransaction();
+      deleteTransaction(id, accessToken);
+      console.log('In single Transaction', id, accessToken);
+      console.log('Transaction deletion launched');
       navigate('/home');
     } else {
-      updateTransaction();
-      navigate(`/home/${id}`);
+      const body = {
+        type: modifyType,
+        category: modifyCategory,
+        name: modifyName,
+        amount: modifyAmount,
+      };
+      updateTransaction(body, accessToken);
+      console.log('Transaction update launched');
+      navigate(`/home`);
     }
   };
 
@@ -41,7 +52,7 @@ function SingleTransaction() {
       <Header />
       <div className="single_transaction">
         <button onClick={() => setToggle(!toggle)} className="toggle">
-          Toggle to {toggle ? 'Delete' : 'Update'}
+          Toggle to {toggle ? 'Update' : 'Delete'}
         </button>
         <form>
           <div>
@@ -82,7 +93,10 @@ function SingleTransaction() {
           </div>
           <button
             onClick={(e) => deleteOrUpdate(e)}
-            style={{ backgroundColor: toggle ? 'red' : 'green' }}
+            style={{
+              backgroundColor: toggle ? 'red' : 'green',
+              color: 'white',
+            }}
           >
             {toggle ? 'Delete' : 'Update'}
           </button>

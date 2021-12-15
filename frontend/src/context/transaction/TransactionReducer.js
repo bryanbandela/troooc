@@ -7,6 +7,7 @@ import {
   SET_LOADING,
   SHOW_TRANSACTION,
   SHOW_TRANSACTIONS,
+  DELETE_TRANSACTION,
 } from './transactionConstants';
 
 const TransactionsReducer = (
@@ -39,6 +40,16 @@ const TransactionsReducer = (
       };
     case REMOVE_LOADING:
       return { ...state, loading: false };
+    case DELETE_TRANSACTION:
+      return {
+        ...state,
+        message: action.message,
+        transactions: [
+          ...state.transactions.filter(
+            (transaction) => transaction._id !== action.payload
+          ),
+        ],
+      };
     case SHOW_TRANSACTION:
       return { ...state, singleTransaction: action.payload };
     case FAILED_TRANSACTION:

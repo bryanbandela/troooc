@@ -5,6 +5,7 @@ import TransactionsReducer from './TransactionReducer';
 import {
   ADD_TRANSACTION,
   ADD_TRANSACTIONS,
+  DELETE_TRANSACTION,
   FAILED_TRANSACTION,
   REMOVE_LOADING,
   RESET_TRANSACTION,
@@ -102,15 +103,49 @@ const TransactionState = (props) => {
     });
   };
   //DELETE TRANSACTION
-  const deleteTransaction = (id) => {
-    console.log('Transaction deleted');
-    //add async/await
+  const deleteTransaction = async (id, token) => {
+    console.log('In state. The id & token', id, token);
+    try {
+      dispatch({ type: SET_LOADING });
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const data = await axios.delete(`/api/transactions/${id}`, config);
+      const {
+        data: { message },
+      } = data;
+      dispatch({ type: DELETE_TRANSACTION, payload: id, message: message });
+      console.log('Transaction deleted');
+    } catch (error) {
+      dispatch({ type: FAILED_TRANSACTION });
+      console.log('Transaction failed to be deleted', error);
+    }
   };
 
   //UPDATE TRANSACTION
-  const updateTransaction = (id) => {
+  const updateTransaction = async (body, token) => {
     console.log('Transaction updated');
-    //add async/await
+    try {
+      dispatch({
+        type: SET_LOADING,
+      });
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const { data } = axios.patch(body, config);
+      console.log('Data updated from request in State', data);
+    } catch (error) {
+      dispatch({ type: FAILED_TRANSACTION });
+      console.log('Transaction failed to update', error);
+    }
   };
 
   const resetTransaction = () => {

@@ -7,7 +7,8 @@ import UserContext from '../context/user/UserContext';
 import Loader from './Loader';
 
 function TransactionMenu() {
-  const { transactions, getAllTransactions } = useContext(TransactionContext);
+  const { transactions, getAllTransactions, loader } =
+    useContext(TransactionContext);
   const { accessToken } = useContext(UserContext);
   console.log('In TransactionMenu', transactions);
   console.log('Checking the length of array', transactions.length);
@@ -18,6 +19,7 @@ function TransactionMenu() {
 
   return (
     <>
+      {loader && <Loader />}
       <div className="transaction_menu">
         <div className="transactions">
           <h3>Transactions</h3>
