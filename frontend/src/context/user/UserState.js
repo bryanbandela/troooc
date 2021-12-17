@@ -82,7 +82,7 @@ const UserState = (props) => {
 
   function logoutUser() {
     dispatch({ type: USER_LOGOUT });
-    localStorage.removetItem('accessToken');
+    localStorage.removeItem('accessToken');
     localStorage.removeItem('userInfo');
   }
 
