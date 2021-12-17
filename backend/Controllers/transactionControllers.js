@@ -69,6 +69,7 @@ const updateTransaction = async (req, res) => {
       res.json({
         transaction: transaction,
       });
+      console.log('transaction updated in backend');
     }
   } catch (error) {
     console.log(error);

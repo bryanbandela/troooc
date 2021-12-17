@@ -2,6 +2,7 @@ import { useReducer } from 'react';
 import axios from 'axios';
 import TransactionContext from './TransactionContext';
 import TransactionsReducer from './TransactionReducer';
+import { useNavigate } from 'react-router-dom';
 import {
   ADD_TRANSACTION,
   ADD_TRANSACTIONS,
@@ -127,7 +128,7 @@ const TransactionState = (props) => {
   };
 
   //UPDATE TRANSACTION
-  const updateTransaction = async (body, token) => {
+  const updateTransaction = async (id, body, token) => {
     console.log('Transaction updated');
     try {
       dispatch({
@@ -140,7 +141,8 @@ const TransactionState = (props) => {
         },
       };
 
-      const { data } = axios.patch(body, config);
+      const { data } = axios.patch(`/api/transactions/${id}`, body, config);
+
       console.log('Data updated from request in State', data);
     } catch (error) {
       dispatch({ type: FAILED_TRANSACTION });

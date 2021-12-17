@@ -3,7 +3,7 @@ import Meta from '../components/Meta';
 import Header from '../components/Header';
 import { useState, useContext } from 'react';
 import TransactionContext from '../context/transaction/TransactionContext';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import UserContext from '../context/user/UserContext';
 
 function SingleTransaction() {
@@ -40,7 +40,7 @@ function SingleTransaction() {
         name: modifyName,
         amount: modifyAmount,
       };
-      updateTransaction(body, accessToken);
+      updateTransaction(id, body, accessToken);
       console.log('Transaction update launched');
       navigate(`/home`);
     }
