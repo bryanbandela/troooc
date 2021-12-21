@@ -1,5 +1,10 @@
-import { DELETE_TIP, RESET_TIP } from './tipConstants';
-import { SET_LOADING, ADD_TIP, SHOW_TIPS } from './tipsConstants';
+import {
+  DELETE_TIP,
+  RESET_TIP,
+  SET_LOADING,
+  ADD_TIP,
+  SHOW_TIPS,
+} from './tipConstants';
 
 const TipsReducer = (
   state = {

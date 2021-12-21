@@ -18,7 +18,7 @@ const readTips = async (req, res) => {
 };
 
 //@description  Create a single budget
-//@route        Post /api/budgets
+//@route        Post /api/tips
 //@access       Private
 const submitTip = async (req, res) => {
   try {

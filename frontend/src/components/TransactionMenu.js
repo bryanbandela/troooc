@@ -7,7 +7,7 @@ import UserContext from '../context/user/UserContext';
 import Loader from './Loader';
 
 function TransactionMenu() {
-  const { transactions, getAllTransactions, loader } =
+  const { transactions, getAllTransactions, loading } =
     useContext(TransactionContext);
   const { accessToken } = useContext(UserContext);
   console.log('In TransactionMenu', transactions);
@@ -19,7 +19,7 @@ function TransactionMenu() {
 
   return (
     <>
-      {loader && <Loader />}
+      {loading && <Loader />}
       <div className="transaction_menu">
         <div className="transactions">
           <h3>Transactions</h3>

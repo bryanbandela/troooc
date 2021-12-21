@@ -2,7 +2,6 @@ import { useReducer } from 'react';
 import axios from 'axios';
 import TransactionContext from './TransactionContext';
 import TransactionsReducer from './TransactionReducer';
-import { useNavigate } from 'react-router-dom';
 import {
   ADD_TRANSACTION,
   ADD_TRANSACTIONS,
