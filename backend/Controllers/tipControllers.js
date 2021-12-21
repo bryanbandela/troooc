@@ -1,4 +1,4 @@
-const Tip = require('../Models/budgetModels');
+const Tip = require('../Models/tipModels');
 
 //@description  Get all tips from all users
 //@route        GET /api/tips/

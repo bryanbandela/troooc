@@ -6,13 +6,44 @@ import { useState, useContext, useEffect } from 'react';
 import TipContext from '../context/tip/TipContext';
 import UserContext from '../context/user/UserContext';
 import Loader from '../components/Loader';
+import { useNavigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 function Tip() {
+  const navigate = useNavigate();
+  const redirect = '/login';
   const { tips, loading, getAllTips, addTip } = useContext(TipContext);
-  const { accessToken } = useContext(UserContext);
-  console.log('In TransactionMenu', tips);
+  const {
+    accessToken,
+    logoutUser,
+    userInfo: { username },
+  } = useContext(UserContext);
+  console.log('In Tip.js', tips);
   console.log('Checking the length of array', tips.length);
+
+  const checkToken = () => {
+    let token = localStorage.getItem('accessToken');
+    const { exp } = jwtDecode(token);
+    console.log('exp is in Home page', exp);
+    const expirationTime = exp * 1000 - 60000;
+    console.log('Checking calc for expiration', expirationTime);
+    console.log('what is Date.now', Date.now());
+
+    if (Date.now() >= expirationTime) {
+      localStorage.clear();
+      console.log('Token has expired');
+      logoutUser();
+      navigate('/login');
+    }
+  };
+
   useEffect(() => {
+    if (!accessToken) {
+      navigate(redirect);
+    }
+
+    checkToken();
+
     console.log('Tips fetched in Tip screen');
     getAllTips(accessToken);
   }, []);
@@ -22,16 +53,21 @@ function Tip() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log('I got clicked to add a tip');
     const tip = {
       title,
-      answer,
+      body: answer,
+      user: username,
     };
 
     addTip(tip, accessToken);
+
+    setTitle('');
+    setAnswer('');
   };
   return (
     <>
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
       <Meta />
       <Header />
       <div className="tip">
@@ -39,7 +75,14 @@ function Tip() {
           <h2>List of tips</h2>
           {tips.length > 0 ? (
             tips.map((tip) => {
-              return <SingleTip key={tip._id} />;
+              return (
+                <SingleTip
+                  title={tip.title}
+                  paragraph={tip.body}
+                  username={tip.user}
+                  key={tip._id}
+                />
+              );
             })
           ) : (
             <p className="no_text">No tip to display</p>
