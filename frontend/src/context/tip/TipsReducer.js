@@ -4,6 +4,7 @@ import {
   SET_LOADING,
   ADD_TIP,
   SHOW_TIPS,
+  ADD_TIPS,
 } from './tipConstants';
 
 const TipsReducer = (
@@ -17,6 +18,12 @@ const TipsReducer = (
   switch (action.type) {
     case SET_LOADING:
       return { ...state, loading: true };
+    case ADD_TIPS:
+      return {
+        ...state,
+        tips: action.payload,
+        loading: false,
+      };
     case ADD_TIP:
       return {
         ...state,

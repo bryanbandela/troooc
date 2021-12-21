@@ -118,7 +118,7 @@ function Tip() {
               ></textarea>
             </div>
 
-            <button onClick={() => submitHandler}>Submit</button>
+            <button onClick={submitHandler}>Submit</button>
           </form>
         </div>
       </div>

@@ -4,6 +4,7 @@ import TipContext from './TipContext';
 import TipsReducer from './TipsReducer';
 import {
   ADD_TIP,
+  ADD_TIPS,
   FAILED_TIP,
   REMOVE_LOADING,
   SET_LOADING,
@@ -66,7 +67,7 @@ const TipState = (props) => {
         data: { tips },
       } = data;
       dispatch({
-        type: ADD_TIP,
+        type: ADD_TIPS,
         payload: tips,
       });
       console.log(

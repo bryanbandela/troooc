@@ -21,8 +21,10 @@ const readTips = async (req, res) => {
 //@route        Post /api/tips
 //@access       Private
 const submitTip = async (req, res) => {
+  console.log('Here is the receibed body', req.body);
   try {
     const tip = await Tip.create(req.body);
+    console.log('here is the created tip', tip);
     if (tip) {
       res.json({ tip: tip });
     }
