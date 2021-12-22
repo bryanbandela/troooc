@@ -22,7 +22,7 @@
 }
 
 .profile a div,
-.profile .delete,
+.profile a .delete,
 .profile .logout {
   padding: 0.5rem 1.2rem;
   width: 300px;
@@ -42,7 +42,8 @@
   color: rgb(9, 221, 105);
 }
 
-.profile .delete p {
+.profile a .delete p {
+  font-size: 1.2rem;
   color: crimson;
 }
 

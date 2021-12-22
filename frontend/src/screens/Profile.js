@@ -9,7 +9,7 @@ import TransactionContext from '../context/transaction/TransactionContext';
 
 function Profile() {
   const navigate = useNavigate();
-  const { accessToken, logoutUser } = useContext(UserContext);
+  const { logoutUser } = useContext(UserContext);
   const { resetTransaction } = useContext(TransactionContext);
   const logoutClick = () => {
     resetTransaction();
@@ -18,9 +18,6 @@ function Profile() {
     navigate('/login');
   };
 
-  const deleteUser = () => {
-    console.log('About to delete user with token', accessToken);
-  };
   return (
     <>
       <Meta />
@@ -31,11 +28,11 @@ function Profile() {
             <p>Update Profile</p>
           </div>
         </Link>
-
-        <button className="delete" onClick={() => deleteUser()}>
-          <p>Delete Profile</p>
-        </button>
-
+        <Link to="/profile/delete">
+          <div className="delete">
+            <p>Delete Profile</p>
+          </div>
+        </Link>
         <button className="logout" onClick={() => logoutClick()}>
           <p>Logout</p>
         </button>

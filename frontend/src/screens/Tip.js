@@ -67,7 +67,7 @@ function Tip() {
   };
   return (
     <>
-      {/* {loading && <Loader />} */}
+      {loading && <Loader />}
       <Meta />
       <Header />
       <div className="tip">

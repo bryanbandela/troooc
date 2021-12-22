@@ -20,7 +20,7 @@ function UpdateProfile() {
           <div>
             <input
               type="text"
-              placeholder="Enter username"
+              placeholder="Enter new username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -29,7 +29,7 @@ function UpdateProfile() {
           <div>
             <input
               type="email"
-              placeholder="Enter Email"
+              placeholder="Enter new Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -38,7 +38,7 @@ function UpdateProfile() {
           <div>
             <input
               type="password"
-              placeholder="Enter password"
+              placeholder="Enter new password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

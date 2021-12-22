@@ -5,6 +5,7 @@ import {
   ADD_TIP,
   SHOW_TIPS,
   ADD_TIPS,
+  REMOVE_LOADING,
 } from './tipConstants';
 
 const TipsReducer = (
@@ -22,13 +23,11 @@ const TipsReducer = (
       return {
         ...state,
         tips: action.payload,
-        loading: false,
       };
     case ADD_TIP:
       return {
         ...state,
         tips: [...state.tips, action.payload],
-        loading: false,
       };
     case SHOW_TIPS:
       return {
@@ -40,6 +39,11 @@ const TipsReducer = (
         ...state,
         message: action.message,
         tips: [...state.tips.filter((tip) => tip._id !== action.payload)],
+      };
+    case REMOVE_LOADING:
+      return {
+        ...state,
+        loading: false,
       };
 
     case RESET_TIP:

@@ -12,27 +12,30 @@ import DeleteProfile from './screens/DeleteProfile';
 import TransactionState from './context/transaction/TransactionState';
 import UserState from './context/user/UserState';
 import TipState from './context/tip/TipState';
+import BudgetState from './context/budget/BudgetState';
 
 function App() {
   return (
     <>
       <UserState>
         <TipState>
-          <TransactionState>
-            <Routes>
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/home/:id" element={<SingleTransaction />} />
-              <Route path="/tips" element={<Tip />} />
-              <Route path="/budget" element={<Budget />} />
-              <Route path="/profile/update" element={<UpdateProfile />} />
-              <Route path="/profile/delete" element={<DeleteProfile />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/:id" element={<SingleTransaction />} />
-              <Route path="/" element={<Welcome />} />
-            </Routes>
-          </TransactionState>
+          <BudgetState>
+            <TransactionState>
+              <Routes>
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/home/:id" element={<SingleTransaction />} />
+                <Route path="/tips" element={<Tip />} />
+                <Route path="/budget" element={<Budget />} />
+                <Route path="/profile/update" element={<UpdateProfile />} />
+                <Route path="/profile/delete" element={<DeleteProfile />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/:id" element={<SingleTransaction />} />
+                <Route path="/" element={<Welcome />} />
+              </Routes>
+            </TransactionState>
+          </BudgetState>
         </TipState>
       </UserState>
     </>

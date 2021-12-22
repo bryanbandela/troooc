@@ -40,10 +40,14 @@ const TipState = (props) => {
         data.tip
       );
 
-      dispatch({
-        type: ADD_TIP,
-        payload: data.tip,
-      });
+      if (data) {
+        dispatch({
+          type: ADD_TIP,
+          payload: data.tip,
+        });
+
+        dispatch({ type: REMOVE_LOADING });
+      }
     } catch (error) {
       dispatch({ type: FAILED_TIP });
       console.log('Error occured in state while adding tip', error);
@@ -66,17 +70,19 @@ const TipState = (props) => {
       const {
         data: { tips },
       } = data;
-      dispatch({
-        type: ADD_TIPS,
-        payload: tips,
-      });
-      console.log(
-        'Tips data from State obtained from DB',
-        data,
-        'And the tips',
-        tips
-      );
-      dispatch({ type: REMOVE_LOADING });
+      if (tips) {
+        dispatch({
+          type: ADD_TIPS,
+          payload: tips,
+        });
+        console.log(
+          'Tips data from State obtained from DB',
+          data,
+          'And the tips',
+          tips
+        );
+        dispatch({ type: REMOVE_LOADING });
+      }
     } catch (error) {
       dispatch({ type: FAILED_TIP });
       console.log('Tipfetching Error in state', error);

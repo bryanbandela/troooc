@@ -2,13 +2,29 @@ import './Profile.css';
 import Meta from '../components/Meta';
 import Header from '../components/Header';
 import './Profile.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import UserContext from '../context/user/UserContext';
 
 function DeleteProfile() {
+  const navigate = useNavigate();
+  const {
+    deleteUser,
+    accessToken,
+    userInfo: { id },
+  } = useContext(UserContext);
+
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmUsername, setConfirmUsername] = useState('');
+
+  const deleteHandle = (e) => {
+    e.preventDefault();
+    if (username === confirmUsername) {
+      deleteUser(id, accessToken);
+      navigate('/');
+    }
+  };
+
   return (
     <>
       <Meta />
@@ -31,27 +47,19 @@ function DeleteProfile() {
           </div>
           <div>
             <input
-              type="password"
-              placeholder="Enter Password"
-              value={password}
+              type="text"
+              placeholder="Confirm username"
+              value={confirmUsername}
               onChange={(e) => {
-                setPassword(e.target.value);
+                setConfirmUsername(e.target.value);
               }}
-              required
-            ></input>
-          </div>
-          <div>
-            <input
-              value={confirmPassword}
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-              }}
-              placeholder="Confirm Password"
               required
             ></input>
           </div>
 
-          <button className="delete_btn">Confirm Delete</button>
+          <button className="delete_btn" onClick={deleteHandle}>
+            Confirm Delete
+          </button>
         </form>
       </div>
     </>

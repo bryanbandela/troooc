@@ -1,5 +1,8 @@
 import { useReducer } from 'react';
 import {
+  USER_DELETE_FAIL,
+  USER_DELETE_REQUEST,
+  USER_DELETE_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -86,12 +89,35 @@ const UserState = (props) => {
     localStorage.removeItem('userInfo');
   }
 
+  async function deleteUser(id, token) {
+    console.log('User about to be deleted');
+
+    try {
+      dispatch({ type: USER_DELETE_REQUEST });
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const userDeleted = await axios.delete(`/api/users/${id}`, config);
+
+      if (userDeleted) {
+        dispatch({ type: USER_DELETE_SUCCESS });
+      }
+    } catch (error) {
+      dispatch({ type: USER_DELETE_FAIL });
+    }
+  }
+
   return (
     <UserContext.Provider
       value={{
         registerUser,
         loginUser,
         logoutUser,
+        deleteUser,
         loading: state.loading,
         userInfo: state.userInfo,
         accessToken: state.accessToken,

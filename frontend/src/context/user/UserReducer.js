@@ -6,6 +6,8 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_LOGOUT,
+  USER_DELETE_REQUEST,
+  USER_DELETE_SUCCESS,
 } from './userConstants';
 
 const UserReducer = (
@@ -35,6 +37,10 @@ const UserReducer = (
       return { message: 'Failed to login' };
     case USER_LOGOUT:
       return { accessToken: null, userInfo: {} };
+    case USER_DELETE_REQUEST:
+      return { ...state, loading: true };
+    case USER_DELETE_SUCCESS:
+      return { loading: false };
 
     default:
       return state;
