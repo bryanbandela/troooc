@@ -34,7 +34,7 @@ function Profile() {
           </div>
         </Link>
         <button className="logout" onClick={() => logoutClick()}>
-          <p>Logout</p>
+          Logout
         </button>
       </div>
     </>

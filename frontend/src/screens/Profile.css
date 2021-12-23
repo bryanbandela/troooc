@@ -34,6 +34,9 @@
 
 .profile .logout {
   background-color: #000;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 8px;
 }
 
 .profile a div p {
@@ -45,10 +48,6 @@
 .profile a .delete p {
   font-size: 1.2rem;
   color: crimson;
-}
-
-.profile .logout p {
-  color: white;
 }
 
 .profile form {
@@ -86,7 +85,7 @@
   cursor: pointer;
   margin-top: 0.5rem;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: 0.3s;
 }
 

@@ -89,7 +89,7 @@ const UserState = (props) => {
     localStorage.removeItem('userInfo');
   }
 
-  async function deleteUser(id, token) {
+  async function deleteUser(token) {
     console.log('User about to be deleted');
 
     try {
@@ -101,7 +101,7 @@ const UserState = (props) => {
         },
       };
 
-      const userDeleted = await axios.delete(`/api/users/${id}`, config);
+      const userDeleted = await axios.delete(`/api/users/profile`, config);
 
       if (userDeleted) {
         dispatch({ type: USER_DELETE_SUCCESS });

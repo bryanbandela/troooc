@@ -98,10 +98,10 @@ const updateUser = async (req, res) => {
 //@access       Private
 const deleteUser = async (req, res) => {
   const reqUser = await User.findById(req.user);
+  console.log('Here is the found user in DB', reqUser);
   if (reqUser) {
-    const user = await User.findById(req.body.username);
+    const user = await reqUser.remove();
     if (user) {
-      await user.remove();
       res.json({ message: 'User removed' });
     } else {
       res.status(404);
