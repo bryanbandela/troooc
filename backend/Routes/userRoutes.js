@@ -14,7 +14,7 @@ router.route('/login').post(loginUser);
 router
   .route('/profile')
   .get(protect, logoutUser)
-  .put(protect, updateUser)
+  .patch(protect, updateUser)
   .delete(protect, deleteUser);
 
 module.exports = router;

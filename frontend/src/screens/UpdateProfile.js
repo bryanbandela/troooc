@@ -1,13 +1,28 @@
 import Meta from '../components/Meta';
 import Header from '../components/Header';
 import './Profile.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import UserContext from '../context/user/UserContext';
 
 function UpdateProfile() {
-  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+  const { updateUser, accessToken } = useContext(UserContext);
+  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const body = {
+      username: userName,
+      email,
+      password,
+    };
+    updateUser(accessToken, body);
+    // navigate('/profile');
+    console.log('redirected to home page');
+  };
   return (
     <>
       <Meta />
@@ -21,8 +36,8 @@ function UpdateProfile() {
             <input
               type="text"
               placeholder="Enter new username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               required
             ></input>
           </div>
@@ -44,7 +59,7 @@ function UpdateProfile() {
               required
             ></input>
           </div>
-          <button>Update Profile</button>
+          <button onClick={handleClick}>Update Profile</button>
         </form>
       </div>
     </>

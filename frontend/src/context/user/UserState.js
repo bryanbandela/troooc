@@ -89,6 +89,31 @@ const UserState = (props) => {
     localStorage.removeItem('userInfo');
   }
 
+  async function updateUser(token, body) {
+    console.log('User about to be updated');
+    console.log('Token in State', token);
+    console.log('Body in State', body);
+
+    try {
+      dispatch({
+        type: USER_REGISTER_REQUEST,
+      });
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const { data } = axios.patch(`/api/users/profile`, body, config);
+
+      console.log('User updated from request in State', data);
+    } catch (error) {
+      dispatch({ type: USER_LOGIN_FAIL });
+      console.log('User failed to update', error);
+    }
+  }
+
   async function deleteUser(token) {
     console.log('User about to be deleted');
 
@@ -115,6 +140,7 @@ const UserState = (props) => {
     <UserContext.Provider
       value={{
         registerUser,
+        updateUser,
         loginUser,
         logoutUser,
         deleteUser,
