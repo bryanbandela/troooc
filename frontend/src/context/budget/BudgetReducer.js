@@ -19,6 +19,7 @@ const BudgetReducer = (
         ...state,
         budgets: action.payload,
       };
+
     case ADD_BUDGET:
       return {
         ...state,

@@ -81,12 +81,14 @@ const updateUser = async (req, res) => {
     }
     const updatedUser = await user.save();
 
-    res.json({
-      id: updatedUser._id,
-      username: updatedUser.username,
-      email: updatedUser.email,
-      token: generateToken(updatedUser._id),
-    });
+    if (updatedUser) {
+      res.status(201).json({
+        id: updatedUser._id,
+        username: updatedUser.username,
+        email: updatedUser.email,
+        accessToken: generateToken(updatedUser._id),
+      });
+    }
   } else {
     res.status(404);
     throw new Error('User not found');

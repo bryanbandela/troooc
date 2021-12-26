@@ -105,9 +105,15 @@ const UserState = (props) => {
         },
       };
 
-      const { data } = axios.patch(`/api/users/profile`, body, config);
+      const { data } = await axios.patch(`/api/users/profile`, body, config);
+      console.log('data in state', data);
 
-      console.log('User updated from request in State', data);
+      if (data) {
+        dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+        localStorage.setItem('accessToken', JSON.stringify(data.accessToken));
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        console.log('User updated from request in State', data);
+      }
     } catch (error) {
       dispatch({ type: USER_LOGIN_FAIL });
       console.log('User failed to update', error);

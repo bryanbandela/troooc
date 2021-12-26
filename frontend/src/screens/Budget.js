@@ -59,10 +59,7 @@ function Budget() {
     addBudget(budget, accessToken);
     setName('');
     setAmount('');
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+    getAllBudgets(accessToken); //if i remove this line it won't get all the budgets
   };
 
   return (
@@ -74,23 +71,25 @@ function Budget() {
         <div className="allbudgets">
           <h2>List of budgets</h2>
           {budgets.length > 0 ? (
-            budgets.map((budget) => (
-              <SingleBudget
-                key={budget._id}
-                name={budget.name}
-                value={budget.amount}
-                deleteBtn={deleteBudget}
-                id={budget._id}
-                token={accessToken}
-              />
-            ))
+            budgets.map((budget) => {
+              return (
+                <SingleBudget
+                  key={budget._id}
+                  name={budget.name}
+                  value={budget.amount}
+                  deleteBtn={deleteBudget}
+                  id={budget._id}
+                  token={accessToken}
+                />
+              );
+            })
           ) : (
             <p>No budget to display</p>
           )}
         </div>
         <div className="submit_budget">
           <h2>Submit Budget Items</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <label>Name</label>
               <input
@@ -116,7 +115,7 @@ function Budget() {
               ></input>
             </div>
 
-            <button onClick={handleSubmit}>Submit</button>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>

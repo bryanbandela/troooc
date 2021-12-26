@@ -2,12 +2,16 @@ import Meta from '../components/Meta';
 import Header from '../components/Header';
 import './Profile.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import UserContext from '../context/user/UserContext';
 
 function UpdateProfile() {
   const navigate = useNavigate();
-  const { updateUser, accessToken } = useContext(UserContext);
+  const {
+    updateUser,
+    accessToken,
+    userInfo: { username },
+  } = useContext(UserContext);
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,8 +24,12 @@ function UpdateProfile() {
       password,
     };
     updateUser(accessToken, body);
-    // navigate('/profile');
-    console.log('redirected to home page');
+    setEmail('');
+    setPassword('');
+    setTimeout(() => {
+      console.log('redirected to home page');
+      // navigate('/home');
+    }, 2000);
   };
   return (
     <>
@@ -59,7 +67,7 @@ function UpdateProfile() {
               required
             ></input>
           </div>
-          <button onClick={handleClick}>Update Profile</button>
+          <button onClick={(e) => handleClick(e)}>Update Profile</button>
         </form>
       </div>
     </>
