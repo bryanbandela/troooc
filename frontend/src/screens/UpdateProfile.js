@@ -24,12 +24,9 @@ function UpdateProfile() {
       password,
     };
     updateUser(accessToken, body);
+    navigate('/profile');
     setEmail('');
     setPassword('');
-    setTimeout(() => {
-      console.log('redirected to home page');
-      // navigate('/home');
-    }, 2000);
   };
   return (
     <>
@@ -39,7 +36,7 @@ function UpdateProfile() {
         <Link className="return" to="/profile">
           Go back
         </Link>
-        <form>
+        <form onSubmit={handleClick}>
           <div>
             <input
               type="text"
@@ -67,7 +64,7 @@ function UpdateProfile() {
               required
             ></input>
           </div>
-          <button onClick={(e) => handleClick(e)}>Update Profile</button>
+          <button type="submit">Update Profile</button>
         </form>
       </div>
     </>

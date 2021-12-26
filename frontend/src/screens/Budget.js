@@ -59,6 +59,7 @@ function Budget() {
     addBudget(budget, accessToken);
     setName('');
     setAmount('');
+
     getAllBudgets(accessToken); //if i remove this line it won't get all the budgets
   };
 

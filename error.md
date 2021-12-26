@@ -28,3 +28,5 @@
 9. I fixed the cors message with npm i cors
 
 10. React-helmet seems deprecated. SO use React-helmet-async (At the end of project)
+
+11. property undefined on first render after updating: solution define an initial state of the property in the reducer and state.

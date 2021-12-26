@@ -5,9 +5,7 @@ import { useContext } from 'react';
 import UserContext from '../context/user/UserContext';
 
 const Header = () => {
-  const {
-    userInfo: { username },
-  } = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
 
   return (
     <header className="header_app">
@@ -50,7 +48,7 @@ const Header = () => {
           </ul>
         </nav>
         <div className="username">
-          <p>{username}</p>
+          <p>{userInfo ? userInfo.username : ''}</p>
         </div>
       </div>
     </header>
