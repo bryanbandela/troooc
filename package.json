@@ -5,12 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
-    "server": "node backend/server.js",
+    "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "cd frontend && npm run build",
-    "install-frontend": "cd frontend && npm install",
-    "heroku-postbuild": "npm run install-frontend && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Bryan Bandela",
   "license": "ISC",
