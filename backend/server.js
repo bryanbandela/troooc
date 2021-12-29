@@ -44,6 +44,7 @@ app.use('/api/tips', tipRoutes);
 app.use(notFound);
 app.use(errorHandle);
 
+const __dirname = path.resolve();
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/frontend/build')));
   console.log('The directory is', __dirname);
