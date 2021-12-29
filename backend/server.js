@@ -45,11 +45,11 @@ app.use(notFound);
 app.use(errorHandle);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/frontend/build')));
-  console.log('The directory is', __dirname);
+  app.use(express.static(path.join(path.resolve(), '/frontend/build')));
+  console.log('The directory is', path.resolve());
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+    res.sendFile(path.join(path.resolve(), 'frontend', 'build', 'index.html'));
   });
 } else {
   app.get('/', (req, res) => {
