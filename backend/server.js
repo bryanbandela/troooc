@@ -16,25 +16,25 @@ connect();
 app.use(express.json());
 
 // ** MIDDLEWARE ** //
-const whitelist = [
-  'http://localhost:3000',
-  'http://localhost:8080',
-  'https://troooc.heroku.com',
-];
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log('** Origin of request ' + origin);
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      console.log('Origin acceptable');
-      callback(null, true);
-    } else {
-      console.log('Origin rejected');
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-};
+// const whitelist = [
+//   'http://localhost:3000',
+//   'http://localhost:8080',
+//   'https://troooc.herokuapp.com/',
+// ];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     console.log('** Origin of request ' + origin);
+//     if (whitelist.indexOf(origin) !== -1 || !origin) {
+//       console.log('Origin acceptable');
+//       callback(null, true);
+//     } else {
+//       console.log('Origin rejected');
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use('/api/users', userRoutes);
 app.use('/api/transactions', transactionRoutes);
